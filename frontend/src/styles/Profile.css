@@ -1,0 +1,79 @@
+.profile-page {
+  padding: 20px;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.profile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.email {
+  color: #666;
+  font-size: 14px;
+}
+
+.edit-btn {
+  background: #4e73df;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.profile-form {
+  margin-top: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+input, select {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.email-section {
+  margin-top: 20px;
+}
+
+.email-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-email-btn {
+  margin-top: 10px;
+  background: transparent;
+  color: #4e73df;
+  border: 1px solid #4e73df;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}

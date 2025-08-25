@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #f3f4f6;
+  color: #333;
+}
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #1f2a40;
+  color: white;
+  width: 260px;
+  padding: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-cards {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.edit-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.member-info {
+  font-size: 0.85rem;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.nav-links a {
+  display: block;
+  padding: 10px;
+  color: #d1d5db;
+  text-decoration: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  transition: background 0.2s;
+}
+
+.nav-links a:hover {
+  background-color: #374151;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+}
+
+.alert-success {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.quick-actions button {
+  background-color: #e5e7eb;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.quick-actions button:hover {
+  background-color: #d1d5db;
+}
+
+.attendance {
+  margin-bottom: 30px;
+}
+
+.attendance-chart {
+  background-color: #e5e7eb;
+  height: 120px;
+  margin-top: 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+}
+
+.bookings, .memberships {
+  background-color: white;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.action-btn {
+  background-color: #0284c7;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #0369a1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .quick-actions {
+    justify-content: center;
+  }
+}

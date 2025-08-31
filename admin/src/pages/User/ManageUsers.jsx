@@ -8,28 +8,16 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const ManageUsers = () => {
   const dispatch = useDispatch();
-  const {users} = useSelector(state=>state.users)
-  // Dummy user data
-  // const dummyUsers = Array.from({ length: 50 }, (_, i) => ({
-  //   id: i + 1,
-  //   firstName: `User${i + 1}`,
-  //   lastName: `Last${i + 1}`,
-  //   email: `user${i + 1}@example.com`,
-  //   role: i % 3 === 0 ? 'Admin' : i % 2 === 0 ? 'Editor' : 'User',
-  //   status: i % 4 === 0 ? 'Inactive' : 'Active',
-  //   lastLogin: new Date(Date.now() - Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000).toLocaleDateString()
-  // }));
+  const {users,status} = useSelector(state=>state.users)
+
 
   // State for search term
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const [sortConfig, setSortConfig] = useState({
-    key: 'id',
-    direction: 'ascending'
-  });
+  const [sortConfig, setSortConfig] = useState({key: 'id',direction: 'ascending'});
   // const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 console.log(users);
   // Sorting function
   const requestSort = (key) => {
@@ -42,7 +30,7 @@ console.log(users);
 
   // Sort users based on sortConfig
   const sortedUsers = useMemo(() => {
-    let sortableUsers = [users];
+    let sortableUsers = [...users];
     if (sortConfig.key) {
       sortableUsers.sort((a, b) => {
         // Special handling for lastLogin which is a date string
@@ -82,15 +70,15 @@ console.log(users);
 
   // Filter users based on search term
   const filteredUsers = useMemo(() => {
-    return sortedUsers.filter(user => {
+    return sortedUsers.filter(users => {
       const searchLower = searchTerm.toLowerCase();
       return (
-        user?.firstName?.toLowerCase().includes(searchLower) ||
-        user?.lastName?.toLowerCase().includes(searchLower) ||
-        user?.email.toLowerCase().includes(searchLower) ||
-        user?.role?.toLowerCase().includes(searchLower) ||
-        user?.status?.toLowerCase().includes(searchLower) ||
-        user?.id.toString().includes(searchTerm)
+        users?.firstName?.toLowerCase().includes(searchLower) ||
+        users?.lastName?.toLowerCase().includes(searchLower) ||
+        users?.email?.toLowerCase().includes(searchLower) ||
+        users?.role?.toLowerCase().includes(searchLower) ||
+        users?.status?.toLowerCase().includes(searchLower) ||
+        users?.uid?.toString().includes(searchTerm)
       );
     });
   }, [sortedUsers, searchTerm]);
@@ -150,7 +138,7 @@ console.log(users);
     if (selectAll) {
       setSelectedUsers([]);
     } else {
-      setSelectedUsers(currentUsers.map(user => user.id));
+      setSelectedUsers(currentUsers.map(user => user.uid));
     }
     setSelectAll(!selectAll);
   };
@@ -195,7 +183,7 @@ console.log(users);
 //   };
 
   dispatch(fetchUsers());
-}, [dispatch,users]);
+}, [dispatch]);
 
 
   return (
@@ -230,7 +218,7 @@ console.log(users);
           </button>
         </div>
       )}
-{loading ? (
+{status == "loading" ? (
   <div className="loader-container">
     <div className="spinner" />
     <p>Loading users...</p>
@@ -275,35 +263,35 @@ console.log(users);
                 </tr>
               </thead>
               <tbody>
-                {users?.map(user => (
-                  <tr key={user.id}>
+                {users?.map((user,index) => (
+                  <tr key={user?.uid}>
                     <td>
                       <input
                         type="checkbox"
-                        checked={selectedUsers.includes(user.id)}
-                        onChange={() => toggleUserSelection(user.id)}
+                        checked={selectedUsers.includes(user?.uid)}
+                        onChange={() => toggleUserSelection(user?.uid)}
                       />
                     </td>
-                    <td>{user.id}</td>
-                    <td>{user.firstName} {user.lastName}</td>
-                    <td>{user.email}</td>
+                    <td>{index + 1}</td>
+                    <td>{user?.firstName} {user?.lastName}</td>
+                    <td>{user?.email}</td>
                     <td>
-                      <span className={`role-badge ${user.role.toLowerCase()}`}>
-                        {user.role}
+                      <span className={`role-badge ${user?.role?.toLowerCase()}`}>
+                        {user?.role}
                       </span>
                     </td>
                     <td>
-                      <span className={`status-badge ${user.status.toLowerCase()}`}>
-                        {user.status}
+                      <span className={`status-badge ${user?.status?.toLowerCase()}`}>
+                        {user?.status}
                       </span>
                     </td>
-                    <td>{user.lastLogin}</td>
+                    <td>{user?.lastLogin}</td>
                     <td className="actions">
-                      <Link to={`/admin/user/edit-user/${user.id}`} className="edit-btn">
+                      <Link to={`/admin/user/edit-user/${user?.uid}`} className="edit-btn">
                         Edit
                       </Link>
                       <button 
-                        onClick={() => handleDelete(user.id)} 
+                        onClick={() => handleDelete(user?.uid)} 
                         className="delete-btn"
                       >
                         Delete

@@ -4,6 +4,9 @@ import '../App.css'; // Assuming you have a CSS file for styles
 import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import { Header } from './Header';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -22,6 +25,7 @@ export default function Home() {
 
   return (
     <div className="admin-dashboard">
+      <ToastContainer/>
       <Sidebar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
       <div className="main-content">

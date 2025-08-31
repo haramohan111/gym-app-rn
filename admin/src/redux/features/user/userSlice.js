@@ -20,7 +20,7 @@ export const fetchUsers = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await api.get("/get-users");
-      return response.data.users; // assuming { success:true, users:[] }
+      return response.data; // assuming { success:true, users:[] }
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || err.message);
     }
@@ -73,7 +73,7 @@ const userSlice = createSlice({
     });
     builder.addCase(addUser.fulfilled, (state, action) => {
       state.status = "succeeded";
-      state.users.push(action.payload);
+      state.users = action.payload;
     });
     builder.addCase(addUser.rejected, (state, action) => {
       state.status = "failed";

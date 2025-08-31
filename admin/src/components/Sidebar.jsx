@@ -23,7 +23,7 @@ const Sidebar = ({ activeMenu }) => {
       icon: '👥',
       items: [
         { id: 'add-plans', text: 'Add Plans', icon: '➕', path: '/admin/plans/add-plans' },
-        { id: 'manage-music', text: 'Manage Music', icon: '🛠️', path: '/admin/plans/manage-plans' }
+        { id: 'manage-plan', text: 'Manage Plans', icon: '🛠️', path: '/admin/plans/manage-plans' }
       ]
     },
   ];

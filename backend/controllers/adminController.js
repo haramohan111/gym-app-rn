@@ -8,8 +8,8 @@ const adminLogin = (req, res) => {
 
   res.cookie('admin_session', uid, {
     httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
     maxAge: 24 * 60 * 60 * 1000,
   });
 
@@ -104,29 +104,29 @@ const getAllFirebaseUsers = async (req, res) => {
       });
     }
 
-users.forEach(user => {
-  console.log({
-    uid: user.uid,
-    createdAt: user.createdAt,
-    type: typeof user.createdAt,
-    toDate: user.createdAt?.toDate?.(),
-    getTime: user.createdAt?.toDate?.()?.getTime?.()
-  });
-});
+    users.forEach(user => {
+      console.log({
+        uid: user.uid,
+        createdAt: user.createdAt,
+        type: typeof user.createdAt,
+        toDate: user.createdAt?.toDate?.(),
+        getTime: user.createdAt?.toDate?.()?.getTime?.()
+      });
+    });
 
 
 
-const sortedUsers = users.slice().sort((a, b) => {
-  const getTime = obj => {
-    try {
-      return obj?.createdAt?.toDate?.()?.getTime?.() ?? 0;
-    } catch {
-      return 0;
-    }
-  };
+    const sortedUsers = users.slice().sort((a, b) => {
+      const getTime = obj => {
+        try {
+          return obj?.createdAt?.toDate?.()?.getTime?.() ?? 0;
+        } catch {
+          return 0;
+        }
+      };
 
-  return getTime(a) - getTime(b); // ascending
-});
+      return getTime(a) - getTime(b); // ascending
+    });
 
 
 
@@ -217,5 +217,5 @@ module.exports = {
   addMember,
   getAllFirebaseUsers,
   getUserById,
-  updateUser 
+  updateUser
 };

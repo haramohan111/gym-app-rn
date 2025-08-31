@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import '../../styles/AddUser.css';
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../redux/features/user/userSlice"; // adjust path
+import { toast } from 'react-toastify';
+
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -103,7 +105,19 @@ const AddUser = () => {
       const resultAction = await dispatch(addUser(userData));
 
       if (addUser.fulfilled.match(resultAction)) {
-        navigate('/admin/user/manage-users');
+       toast.success('Add user successfully');
+          setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        role: 'user',
+        password: '',
+        confirmPassword: '',
+        permissions: []
+      });
+
+    
+      setErrors({});
       } else {
         setErrors({ submit: resultAction.payload || "Failed to create user" });
       }
@@ -172,7 +186,7 @@ const AddUser = () => {
                 onChange={handleChange}
               >
                 <option value="user">User</option>
-                <option value="editor">Editor</option>
+                {/* <option value="editor">Editor</option> */}
                 <option value="admin">Admin</option>
               </select>
             </div>

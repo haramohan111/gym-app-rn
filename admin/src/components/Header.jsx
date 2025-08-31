@@ -3,6 +3,7 @@ import '../styles/Header.css'; // Create this CSS file
 import { getAuth, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { auth } from "../../firebase";
 
 export const Header = () => {
     const [hoveredUserMenu, setHoveredUserMenu] = useState(false);
@@ -18,8 +19,7 @@ export const Header = () => {
 //   };
 
 const handleLogout = async () => {
-  await axios.post('http://localhost:5000/admin/logout', {}, { withCredentials: true });
-  navigate('/adminlogin');
+signOut(auth);
 };
 
 

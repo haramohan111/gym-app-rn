@@ -77,7 +77,7 @@ function Sidebar() {
         <h2>  {user?.firstName && user?.lastName
           ? `${user.firstName} ${user.lastName}`
           : user?.name || "Loading..."}</h2>
-        <p>Total Remaining Days {totalRemainingDays}</p>
+          {updatedPayments.length > 0 && (<p>Total Remaining Days {totalRemainingDays}</p> )}
 
         <div className="member-info">
           <p>Birthday: {user?.birthday || "Not set"}</p>

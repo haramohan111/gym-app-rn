@@ -30,7 +30,7 @@ export default function App() {
     // This keeps user logged in even after refresh
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        console.log("User is logged in:", currentUser.uid);
+
         setUser(currentUser);
         setLoading(false);
       } else {

@@ -7,7 +7,8 @@ const {
   addMember,
   getAllFirebaseUsers,
   getUserById,
-  updateUser
+  updateUser,
+  deleteUser
 } = require('../controllers/adminController');
 const {
   verifyFirebaseToken,
@@ -29,5 +30,6 @@ router.post('/add-member', addMember);
 router.get('/get-users', checkAdminAuth, getAllFirebaseUsers);
 router.get('/user/:uid',checkAdminAuth, getUserById);
 router.put('/user/:uid', updateUser);
+router.delete('/delete-user/:uid', deleteUser);
 
 module.exports = router;

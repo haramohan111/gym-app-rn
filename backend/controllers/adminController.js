@@ -29,7 +29,7 @@ const adminLogout = (req, res) => {
 
 // Add member
 const addMember = async (req, res) => {
-  console.log('Adding member:', req.body);
+
   const { firstName, lastName, email, password, role } = req.body;
 
   try {
@@ -128,10 +128,6 @@ const getAllFirebaseUsers = async (req, res) => {
       return getTime(a) - getTime(b); // ascending
     });
 
-
-
-
-
     res.status(200).json(sortedUsers);
   } catch (error) {
     console.error('Error fetching Firebase users with Firestore data:', error);
@@ -207,8 +203,26 @@ const updateUser = async (req, res) => {
   }
 };
 
+// DELETE /api/v1/user/:uid
+const deleteUser = async (req, res) => {
+  const { uid } = req.params;
 
+  try {
+    // Delete from Firebase Auth
+    await admin.auth().deleteUser(uid);
 
+    // Delete from Firestore
+    await db.collection('users').doc(uid).delete();
+
+    res.status(200).json({ message: `User with UID ${uid} deleted successfully.` });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    res.status(500).json({
+      message: 'Failed to delete user',
+      error: error.message || 'Unknown error'
+    });
+  }
+};
 
 module.exports = {
   adminLogin,
@@ -217,5 +231,5 @@ module.exports = {
   addMember,
   getAllFirebaseUsers,
   getUserById,
-  updateUser
+  updateUser,deleteUser
 };

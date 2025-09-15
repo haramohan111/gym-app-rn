@@ -120,9 +120,9 @@ const handleBuyNow = async (item) => {
       <h1>💪 Supplement Store</h1>
       <div className="supplement-grid">
         {supplements.map((item) => (
-          <div key={item.id} className="supplement-card">
+          <div  title={item.name} key={item.id} className="supplement-card">
             <img src={item.image} alt={item.name} className="supplement-img" />
-            <h3>{item.name}</h3>
+            <h3 >{item.name.length > 20 ? item.name.slice(0, 20) + '...' : item.name}</h3>
             <p className="price">₹{item.price}</p>
             <button className="buy-btn" onClick={() => handleBuyNow(item)}>
               Buy Now

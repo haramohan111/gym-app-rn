@@ -7,7 +7,7 @@ import SignUp from './pages/user/SignUp';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from './pages/profile/Profile';
 import Home from './components/Home';
-import Dashboard from './pages/dashboard/dashboard';
+import Dashboard from './pages/dashboard/Dashboard';
 import Billing from './pages/Billing/Billing';
 
 import { auth } from "../firebase";
